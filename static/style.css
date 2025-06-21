@@ -1,0 +1,26 @@
+* {
+    margin: 0px;
+}
+  
+#main,#canvas {
+    background-color: rgb(58, 58, 61);
+    color: white;
+    border: 2px solid grey;
+    height: 100vh;
+}
+#canvas {
+    height: 800px;
+    width: 60%;
+    border: 2px solid white;
+    border-radius: 10px;
+    margin: auto;
+}
+#form-body{
+border: 1px solid white;
+width: 60%;
+height: 320px;
+margin: auto;
+margin-top: 200px;
+padding: 10px;
+border-radius: 8px;
+}
