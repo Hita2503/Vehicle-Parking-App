@@ -1,0 +1,33 @@
+#creates python database
+python
+>>> from app import db
+>>> db.create_all()
+
+#create
+lot1= Parking_lot(id = "1234", prime_location_name = "Hyderabad", price = "300",Address = "#702,A3,Life Park,Tolichowki,Hyderabad", Pincode = "560064",m\
+aximum_spots = "15", type =" General")
+>>> db.session.add(lot1)
+>>> db.session.commit()
+
+#Update
+lot3 = Parking_lot.query.filter_by(id="3412").first()
+>>> lot2 = Parking_lot.query.filter_by(id="3412").first()
+>>> lot2
+<Parking_lot 3412>
+>>> lot3.id = 5643
+>>> db.session.commit()
+
+#delete
+p1 = Parking_lot.query.get(7819)
+>>> db.session.delete(p1)
+>>> db.session.commit()
+
+#How to read data
+>>> lots = Parking_lot.query.all()
+>>> lots
+[<Parking_lot 1234>, <Parking_lot 5643>]
+>>> lots[0]
+<Parking_lot 1234>
+>>> l1=lots[0]
+>>> l1.Address
+'#702,A3,Life Park,Tolichowki,Hyderabad'

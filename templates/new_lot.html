@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Parking Lot</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+
+    <style>
+        
+        #canvas {
+          height: 800px; 
+          margin: 0 auto;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      
+        #form-body {
+          height: auto; 
+          width: 60%;
+          margin: 0 auto;
+          padding: 20px;
+          border-radius: 8px;
+        }
+      </style>
+      
+
+</head>
+<body>
+    <div id="main">
+        <div id="canvas">
+            <div id="edit-form-body">
+                <h1>New Parking Lot</h1>
+                <form action="/new_lot" method = "post">
+                
+                    <div class="mb-3">
+                        <label for="LocName" class="form-label">Prime Location Name</label>
+                        <input type="text" class="form-control" id="LocName" name = "Loc">
+                    </div>
+
+                    <div class="textarea">
+                        <label for="addressDetails" class="form-label">Address</label>
+                        <textarea class="form-control" id="addressDetails" rows="3" name = "address"></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="Pincode" class="form-label">Pincode</label>
+                        <input type="number" class="form-control" id="Pincode" name = "pincode">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="price/hour" class="form-label">Price(Per hour)</label>
+                        <input type = "text" class="form-control" id="price/hour" name = "price">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="Option" class="form-label">Maximum spots</label>
+                        <input type = "text" class="form-control" id="Option" name = "max_spots">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="openTime" class="form-label">Opening Time</label>
+                        <input type="time" class="form-control" id="openTime" name = "openingTime">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="closeTime" class="form-label">Closing Time</label>
+                        <input type="time" class="form-control" id="closeTime" name = "closingTime">
+                    </div>
+                    
+        
+                    
+                    <div class="text-center">
+                        <input type="submit" class="btn btn-primary" value = "Add"> 
+                        <a href="{{ url_for('admin_dash') }}" class="btn btn-danger">Cancel</a>
+                        <!--cannot use button tags because we are not using java script-->
+                        <br>
+                    </div>
+                
+
+                </form>
+                 
+            </div>
+        </div>
+    </div>
+</body>
+</html>

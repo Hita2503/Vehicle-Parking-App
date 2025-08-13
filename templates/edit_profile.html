@@ -32,45 +32,50 @@
     <div id="main">
         <div id="canvas">
             <div id="form-body">
-                <h1>User Registration</h1>
-                <form action="/register" method = "post">
+                <h1>Edit Profile</h1>
+                <form action="{{ url_for('edit_profile') }}" method = "post">
+                    <input type="hidden" name="next" value="{{ next }}">
                 
                     <div class="mb-3">
                         <label for="EmailID" class="form-label">Email ID</label>
-                        <input type="text" class="form-control" id="EmailID" placeholder="name@example.com" name = "email">
+                        <input type="text" class="form-control" id="EmailID" placeholder="name@example.com" name = "email" value="{{ logged_user.email }}" readonly>
                     </div>
 
                     <div class="mb-3">
                         <label for="Username" class="form-label">Username</label>
-                        <input type = "text" class="form-control" id="Username" placeholder="Your username" name = "username">
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="Password field" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="Password_field" placeholder="Your Password" name = "pwd">
+                        <input type = "text" class="form-control" id="Username" placeholder="Your username" name = "username" value="{{ logged_user.username }}" readonly>
                     </div>
 
                     <div class="mb-3">
                         <label for="fullname" class="form-label">Full Name</label>
-                        <input type = "text" class="form-control" id="fullname" placeholder="Your Name" name = "fullname">
+                        <input type = "text" class="form-control" id="full_name" placeholder="Your Name" name = "full_name" value="{{ logged_user.full_name }}" required>
                     </div>
 
                     <div class="mb-3">
                         <label for="Option" class="form-label">Address</label>
-                        <input type = "text" class="form-control" id="Option" placeholder="Your address" name = "address">
+                        <input type = "text" class="form-control" id="Option" placeholder="Your address" name = "address" value="{{ logged_user.address }}" required>
                     </div>
 
                     <div class="mb-3">
                         <label for="pincode" class="form-label">Pincode</label>
-                        <input type = "text" class="form-control" id="pincode" placeholder="Your 6-digit pincode" name = "pincode">
+                        <input type = "text" class="form-control" id="pincode" placeholder="Your 6-digit pincode" name = "pincode" value="{{ logged_user.pincode }}" required>
+                    </div>
+                    <hr>
+                    <div class="mb-3">
+                        <label for="Password field" class="form-label">New Password</label>
+                        <input type="password" class="form-control" id="Password_field" placeholder="Your Password" name = "new_pwd">
+
+                        <label for="Password field" class="form-label">Confirm New Password</label>
+                        <input type="password" class="form-control" id="Password_field" placeholder="Your Password" name = "confirm_pwd">
                     </div>
 
                     
                     
                     <div class="text-center">
-                        <input type="submit" class="btn btn-primary" value = "Register"> <!--cannot use button tags because we are not using java script-->
+                        <input type="submit" class="btn btn-primary" value = "Update Changes">
+                        <a href="{{ url_for(next) }}" class="btn btn-danger">Cancel</a>
+                         <!--cannot use button tags because we are not using java script-->
                         <br>
-                        <a href="/login">Login Here!</a>
                     </div>
                 </form>
                 

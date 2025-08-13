@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summary</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+</head>
+<body>
+    <div id="main">
+        <div id="canvas">
+            <form action="{{ url_for('summary') }}" method="post">
+                <nav class="navbar navbar-expand-lg" style="background-color: rgb(58, 58, 61) !important">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="#">Welcome {{ logged_user.full_name }}</a>
+                        
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li class="nav-item">
+                                    <a class="nav-link" aria-current="page" href="{{ url_for('user_dash') }}">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url_for('summary')}}">Summary</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+                            </ul>
+                            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url_for('edit_profile', next='user_dash') }}">Edit Profile</a>
+                                </li>
+                            </ul>
+                            
+                        </div>
+                    </div>
+                </nav>
+
+                <div class="contents">
+                    <h2 class="d-flex justify-content-center  my-4">Your Parking Trends At A Glance</h2>
+                    <div class="d-flex justify-content-center gap-4 flex-wrap">
+                        <div class="card text-dark bg-success mb-3" style="width: 14rem;">
+                            <div class="card-header" style="font-size: larger;">Total Reservations</div>
+                            <div class="card-body">
+                                <p class="fs-4">{{ total_reservations }}</p>
+                            </div>
+                        </div>
+
+                        <div class="card text-dark bg-info mb-3" style="width: 14rem;">
+                            <div class="card-header" style="font-size: larger;">Total Hours Parked-in</div>
+                            <div class="card-body">
+                                <p class="fs-4">{{ total_hours }}</p>
+                            </div>
+                        </div>
+                        
+                        <div class="card text-dark bg-warning mb-3" style="width: 14rem;">
+                            <div class="card-header" style="font-size: larger; fo">Total Cost</div>
+                            <div class="card-body">
+                                <p class="fs-4">{{ total_cost }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="contents">
+                    <h2 class="d-flex justify-content-center  my-4">Recent Activity</h2>
+                    <table class="table table-dark table-striped">
+                    <thead>
+                        <tr>
+                        <th>ID</th>
+                        <th>Location</th>
+                        <th>Vehicle No</th>
+                        <th>Duration in hours</th>
+                        <th>Cost</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for res in recent_history %}
+                        <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ res.spot.lot.prime_location_name }}</td>
+                        <td>{{ res.vehicle_number }}</td>
+                        <td>{{ res.duration }}</td>
+                        <td>Rs. {{ res.cost }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    </table>
+                </div>
+            </form> 
+            
+        </div>
+    </div>
+</body>
+</html>
